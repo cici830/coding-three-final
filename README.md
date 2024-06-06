@@ -1,32 +1,53 @@
-#  gans: Generative Adversarial Networks
-Multiple Generative Adversarial Networks (GANs) implemented in PyTorch and Tensorflow.
+## README for FashionMNIST GAN Modifications
 
-[Check out this blog post](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f) for an introduction to Generative Networks. 
+### Overview
 
+This project adapts an existing GAN model originally designed for the MNIST dataset to generate images from the FashionMNIST dataset. FashionMNIST consists of grayscale images of fashion items, unlike the handwritten digits of MNIST. This adaptation involves modifying several parts of the code to handle the different characteristics of the FashionMNIST dataset, which is essential to accurately generate fashion item images that are representative of the actual dataset.
 
-<img src=".images/dcgan_mnist.gif" width="275"> <img src=".images/dcgan_cifar.gif" width="275">
+### Specific Code Changes
 
-## Vanilla GANs
-Vanilla GANs found in this project were developed based on the original paper [Generative Adversarial Networks](https://arxiv.org/abs/1406.2661) by Goodfellow et al.
+1. **Dataset Change:**
+   - **Original Code:** The dataset was MNIST, typically containing grayscale images of handwritten digits.
+   - **Modified Code:** The dataset was changed to FashionMNIST, which contains grayscale images of various fashion items.
 
-These are trained on the [MNIST dataset](http://yann.lecun.com/exdb/mnist/), and learn to create hand-written digit images using a 1-Dimensional vector representation for 2D input images.
-- [PyTorch Notebook](https://github.com/diegoalejogm/gans/blob/master/1.%20Vanilla%20GAN%20PyTorch.ipynb)
-- [TensorFlow Notebook](https://github.com/diegoalejogm/gans/blob/master/1.%20Vanilla%20GAN%20TensorFlow.ipynb)
+2. **Output Channels Modification in GenerativeNet:**
+   - **Original Code:**
+     ```python
+     nn.ConvTranspose2d(in_channels=128, out_channels=3, kernel_size=4, stride=2, padding=1, bias=False)
+     ```
+   - **Modified Code:**
+     ```python
+     nn.ConvTranspose2d(in_channels=128, out_channels=1, kernel_size=4, stride=2, padding=1, bias=False)
+     ```
 
-<img src=".images/vanilla_mnist_pt_raw.png" width="300"> <img src=".images/vanilla_mnist_pt.png" width="300">
+3. **Input Channels Modification in DiscriminativeNet:**
+   - **Original Code:**
+     ```python
+     nn.Conv2d(in_channels=3, out_channels=128, kernel_size=4, stride=2, padding=1, bias=False)
+     ```
+   - **Modified Code:**
+     ```python
+     nn.Conv2d(in_channels=1, out_channels=128, kernel_size=4, stride=2, padding=1, bias=False)
+     ```
 
-__MNIST-like generated images before & after training.__
+4. **Number of Test Samples Increase:**
+   - **Original Code:**
+     ```python
+     num_test_samples = 16
+     test_noise = noise(num_test_samples)
+     ```
+   - **Modified Code:**
+     ```python
+     num_test_samples = 32
+     test_noise = noise(num_test_samples)
+     ```
 
+### Impact of Modifications
 
-## DCGANs
-Deep Convolutional Generative Adversarial Networks (DCGANs) in this repository were developed based on the original paper [Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks](https://arxiv.org/abs/1511.06434) by Radford et al.
+- **Dataset Change:** Utilizing FashionMNIST instead of MNIST allows the GAN to operate on a different domain of images, testing its ability to generalize and produce fashion-related images. This requires adjustments in model architecture specifically tailored to the type and complexity of images in FashionMNIST.
 
-These are trained on the [CIFAR10](https://www.cs.toronto.edu/~kriz/cifar.html) and the [MNIST](http://yann.lecun.com/exdb/mnist/) datasets. They use 3 dimensional representations for images (length x height x colors) directly for training.
+- **Output and Input Channels Modification:** Since FashionMNIST images are grayscale, changing the number of input and output channels in the neural networks is crucial. This ensures that the networks are architecturally compatible with the format of the data, potentially impacting the training dynamics and quality of the generated images.
 
-- [TensorFlow CIFAR10 Notebook](https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20TensorFlow.ipynb)
-- [PyTorch CIFAR10 Notebook](https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch.ipynb)
-- [PyTorch MNIST Notebook](https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch-MNIST.ipynb)
+- **Increase in Test Samples:** By increasing the number of test samples, we enhance the robustness of the model evaluation. This gives a better understanding of the model's performance across a broader set of data, offering insights into its consistency and reliability in generating diverse fashion items.
 
-<img src=".images/dcgan_cifar_pt_raw.png" width="300"> <img src=".images/dcgan_cifar_pt.png" width="300">
-
-__CIFAR-like generated images before & after training.__
+The above modifications are essential for adapting a GAN model from generating MNIST images to FashionMNIST images, impacting the model's ability to learn and generate high-quality images that faithfully represent the distribution of the FashionMNIST dataset.
