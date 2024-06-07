@@ -97,4 +97,4 @@ Utilizing FashionMNIST instead of MNIST allows the GAN to operate on a different
 - **Dataset:** [FashionMNIST Dataset](https://github.com/zalandoresearch/fashion-mnist)
 - **Video:** [YouTube Tutorial on GANs](https://www.youtube.com/watch?v=OljTVUVzPpM)
 
-You can also watch this [YouTube Tutorial on GANs](https://www.youtube.com/watch?v=OljTVUVzPpM) for a comprehensive understanding of the underlying concepts and implementation details.
+
