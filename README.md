@@ -1,7 +1,7 @@
 ## README for FashionMNIST GAN Modifications
 
 ### The Use of Any Third-Party Resources
-- **Code:** [GANs in PyTorch for MNIST](https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch-MNIST.ipynb)
+- **Code:** https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch.ipynb
 - **Dataset:** [FashionMNIST Dataset](https://github.com/zalandoresearch/fashion-mnist)
 - **Video:** [YouTube Tutorial on GANs](https://www.youtube.com/watch?v=OljTVUVzPpM)
 
@@ -13,9 +13,12 @@ The motivation for this project stems from the desire to explore the capabilitie
 
 This project adapts an existing GAN model originally designed for the MNIST dataset to generate images from the FashionMNIST dataset. FashionMNIST consists of grayscale images of fashion items, unlike the handwritten digits of MNIST. This adaptation involves modifying several parts of the code to handle the different characteristics of the FashionMNIST dataset, which is essential to accurately generate fashion item images that are representative of the actual dataset.
 
+
+
 ### Specific Code Changes
 
-1. **Dataset Change:** The dataset was changed from MNIST, which typically contains grayscale images of handwritten digits, to FashionMNIST, which contains grayscale images of various fashion items.
+1. **Dataset Change:** 
+   The dataset was changed from MNIST, which typically contains grayscale images of handwritten digits, to FashionMNIST, which contains grayscale images of various fashion items.
 
 2. **Output Channels Modification in GenerativeNet:**
    - **Original Code:**
@@ -38,16 +41,13 @@ This project adapts an existing GAN model originally designed for the MNIST data
      )
      self.out = torch.nn.Tanh()
      ```
-   This change ensures that the generated images have the correct format for grayscale images.
 
 3. **Input Channels Modification in DiscriminativeNet:**
    - **Original Code:**
      ```python
      class DiscriminativeNet(torch.nn.Module):
-         
          def __init__(self):
              super(DiscriminativeNet, self).__init__()
-             
              self.conv1 = nn.Sequential(
                  nn.Conv2d(
                      in_channels=3, out_channels=128, kernel_size=4, 
@@ -59,10 +59,8 @@ This project adapts an existing GAN model originally designed for the MNIST data
    - **Modified Code:**
      ```python
      class DiscriminativeNet(torch.nn.Module):
-         
          def __init__(self):
              super(DiscriminativeNet, self).__init__()
-             
              self.conv1 = nn.Sequential(
                  nn.Conv2d(
                      in_channels=1, out_channels=128, kernel_size=4, 
@@ -71,9 +69,9 @@ This project adapts an existing GAN model originally designed for the MNIST data
                  nn.LeakyReLU(0.2, inplace=True)
              )
      ```
-   This modification ensures that the discriminator correctly processes the grayscale input images of FashionMNIST.
 
-4. **Number of Test Samples Increase:** The number of test samples was increased from 16 to 32 to provide a more extensive evaluation of the model's performance.
+4. **Number of Test Samples Increase:**
+   The number of test samples was increased from 16 to 32 to provide a more extensive evaluation of the model's performance.
    - **Original Code:**
      ```python
      num_test_samples = 16
@@ -85,16 +83,41 @@ This project adapts an existing GAN model originally designed for the MNIST data
      test_noise = noise(num_test_samples)
      ```
 
-5. **Using ChatGPT for Assistance:** During the modification of some data and code structures, I utilized ChatGPT to get assistance. ChatGPT helped in understanding the necessary changes needed to adapt the model from MNIST to FashionMNIST, ensuring the model parameters and data handling are correctly adjusted for the new dataset. Additionally, I used ChatGPT to write the README and to help me check for some bugs, such as fixing a color channel mismatch in the dataset at first.
+5. **Batch Size Adjustment:**
+   The batch size for training was reduced from 100 to 50 to allow more frequent updates per epoch, which is intended to improve the model's responsiveness to data variations and enhance learning efficiency.
+   - **Original Code:**
+     ```python
+     batch_size = 100
+     data_loader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=True)
+     ```
+   - **Modified Code:**
+     ```python
+     batch_size = 50
+     data_loader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=True)
+     ```
+## Impact of Changes
 
-### Impact of Modifications
+### Training Update Frequency
+By reducing the batch size from 100 to 50, the number of updates per epoch doubles. This can lead to more detailed weight adjustments and potentially faster convergence on smaller batch sizes.
 
-Utilizing FashionMNIST instead of MNIST allows the GAN to operate on a different domain of images, testing its ability to generalize and produce fashion-related images. This requires adjustments in model architecture specifically tailored to the type and complexity of images in FashionMNIST. Since FashionMNIST images are grayscale, changing the number of input and output channels in the neural networks is crucial. This ensures that the networks are architecturally compatible with the format of the data, potentially impacting the training dynamics and quality of the generated images. By increasing the number of test samples, we enhance the robustness of the model evaluation. This gives a better understanding of the model's performance across a broader set of data, offering insights into its consistency and reliability in generating diverse fashion items. The assistance from ChatGPT was invaluable in ensuring that the modifications were correctly implemented, thus improving the efficiency and effectiveness of the adaptation process. The above modifications are essential for adapting a GAN model from generating MNIST images to FashionMNIST images, impacting the model's ability to learn and generate high-quality images that faithfully represent the distribution of the FashionMNIST dataset.
+### Computational Resource Utilization
+Reducing the batch size generally reduces memory usage, which can be beneficial for running on systems with limited resources.
 
-### Use of Third-Party Resources
+### Model Performance
+Smaller batches often provide a more noisy estimate of the gradient, which can help in escaping local minima during training.
 
-- **Code:** https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch.ipynb
-- **Dataset:** [FashionMNIST Dataset](https://github.com/zalandoresearch/fashion-mnist)
-- **Video:** [YouTube Tutorial on GANs](https://www.youtube.com/watch?v=OljTVUVzPpM)
+## Conclusion
+
+The adjustments made to the MNIST data loading configuration, including the batch size change, are aimed to balance efficient computation with effective
+
+
+
+     
+
+**Using ChatGPT for Assistance:** During the modification of some data and code structures, I utilized ChatGPT to get assistance. ChatGPT helped in understanding the necessary changes needed to adapt the model from MNIST to FashionMNIST, ensuring the model parameters and data handling are correctly adjusted for the new dataset. Additionally, I used ChatGPT to write the README and to help me check for some bugs, such as fixing a color channel mismatch in the dataset at first.I give ChatGPT my original code and modified code to let him write the code.
+
+
+
+
 
 
