@@ -3,7 +3,7 @@
 ### The Use of Any Third-Party Resources
 - **Code:** https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch.ipynb
 - **Dataset:** [FashionMNIST Dataset](https://github.com/zalandoresearch/fashion-mnist) [CIFAR-10 Dataset]https://www.cs.toronto.edu/~kriz/cifar.html
-- **Video:** [YouTube Tutorial on GANs](https://www.youtube.com/watch?v=OljTVUVzPpM)
+- **Video:** https://youtu.be/h8CS1GD02Kc
 
 ### Motivation
 
