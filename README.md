@@ -93,7 +93,7 @@ Utilizing FashionMNIST instead of MNIST allows the GAN to operate on a different
 
 ### Use of Third-Party Resources
 
-- **Code:** [GANs in PyTorch for MNIST](https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch-MNIST.ipynb)
+- **Code:** https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch.ipynb
 - **Dataset:** [FashionMNIST Dataset](https://github.com/zalandoresearch/fashion-mnist)
 - **Video:** [YouTube Tutorial on GANs](https://www.youtube.com/watch?v=OljTVUVzPpM)
 
