@@ -1,7 +1,8 @@
 ## README for FashionMNIST GAN Modifications
 
 ### The Use of Any Third-Party Resources
-- **Code:** https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch.ipynb
+- **GitHub code repository:** https://github.com/cici830/coding-three-final.git
+- **Reference Code:** https://github.com/diegoalejogm/gans/blob/master/2.%20DC-GAN%20PyTorch.ipynb
 - **Dataset:** [FashionMNIST Dataset](https://github.com/zalandoresearch/fashion-mnist) [CIFAR-10 Dataset]https://www.cs.toronto.edu/~kriz/cifar.html
 - **Video:** https://youtu.be/h8CS1GD02Kc
 
