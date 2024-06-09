@@ -203,6 +203,11 @@ Increasing the `beta1` value enhances the optimizer’s sensitivity to newer gra
 ## Using ChatGPT for Assistance
 During the modification of some data and code structures, I utilized ChatGPT to get assistance. ChatGPT helped in understanding the necessary changes needed to adapt the model from MNIST to FashionMNIST, ensuring the model parameters and data handling are correctly adjusted for the new dataset. Additionally, I used ChatGPT to write the README and to help me check for some bugs, such as fixing a color channel mismatch in the dataset at first.I give ChatGPT my original code and modified code to let him write the code.
 
+## Evaluate result
+As machine learning grows over time, images have more detail, images have less noise, and more features are demonstrated. Patterns and structures in the images are more apparent than in earlier generated images, pointing to progress in the generator's understanding of the shapes and boundaries of the content it should generate. The newly generated images show an improvement in contrast, with black and white distinctions being more pronounced, creating a sharper visualization of the images, making the generated images more attractive and visually appealing.
+
+
+
 
 
 
